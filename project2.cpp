@@ -8,32 +8,37 @@
 using namespace std;
 
 void programIntroduction();
-double additionalPay(double originalSalary, double percentageIncrease, int numberOfMonths);
-double updatedSalary(double originalSalary, double percentageIncrease, int numberOfMonths);
-double newMonthlySalary(double originalSalary, double percentageIncrease, int NumberOfMonths);
+double additionalPay(double originalSalary, double percentageIncrease);
+double updatedSalary(double originalSalary, double percentageIncrease);
+double newMonthlySalary(double originalSalary, double percentageIncrease);
 
 int main(){
 
-const double PAY_INCREASE_PERCENTAGE = 0.076;
-int const NUMBER_OF_MONTHS = 6;
+double percentageIncrease = 0;
 double originalEmployeeSalary = 0;
 char userAnswer;
+string employeeName = "";
 
 do{
 
     programIntroduction();
 
-    cout << "Please enter the employees original annual salary: ";
+    cout << "Please enter the employee's name: ";
+    getline(cin, employeeName);
+    cout << "Please enter the pay increase (as a percentage): ";
+    cin >> percentageIncrease;
+    percentageIncrease /= 100;
+    cout << "Please enter " << employeeName << " annual salary: ";
     cin >> originalEmployeeSalary;
-    cout << "Additional amount due: " << additionalPay(originalEmployeeSalary, PAY_INCREASE_PERCENTAGE,NUMBER_OF_MONTHS)
+    cout << "Additional amount due: " << additionalPay(originalEmployeeSalary, percentageIncrease)
     << endl;
-    cout << "Updated Salary: " << updatedSalary(originalEmployeeSalary, PAY_INCREASE_PERCENTAGE, NUMBER_OF_MONTHS)
+    cout <<  employeeName << "\' " << "Updated Salary: " << updatedSalary(originalEmployeeSalary, percentageIncrease)
     << endl;
-    cout << "Updated Monthly Salary: " << newMonthlySalary(originalEmployeeSalary, PAY_INCREASE_PERCENTAGE,
-                                                           NUMBER_OF_MONTHS);
+    cout << employeeName << "\' " << "Updated Monthly Salary: "
+    << newMonthlySalary(originalEmployeeSalary, percentageIncrease);
     cout << endl;
 
-    cout << "Would you like to run this program again? : ";
+    cout << "Would you like to run this program again? (y/n) : ";
     cin >> userAnswer;
 
 }while(userAnswer == 'y');
@@ -48,18 +53,18 @@ void programIntroduction(){
     cout << "=======================" << endl;
 }
 
-double additionalPay(double originalSalary, double percentageIncrease, int numberOfMonths){
-    double additionalPay = (originalSalary * percentageIncrease) * numberOfMonths;
+double additionalPay(double originalSalary, double percentageIncrease){
+    double additionalPay = (originalSalary * percentageIncrease);
     return additionalPay;
 }
 
-double updatedSalary(double originalSalary, double percentageIncrease, int numberOfMonths){
-    double additionalPay = (originalSalary * percentageIncrease) * numberOfMonths;
+double updatedSalary(double originalSalary, double percentageIncrease){
+    double additionalPay = (originalSalary * percentageIncrease);
     return (additionalPay + originalSalary);
 }
 
-double newMonthlySalary(double originalSalary, double percentageIncrease, int NumberOfMonths){
-    return updatedSalary(originalSalary, percentageIncrease, NumberOfMonths) / 12;
+double newMonthlySalary(double originalSalary, double percentageIncrease){
+    return updatedSalary(originalSalary, percentageIncrease) / 12;
 
 }
 
